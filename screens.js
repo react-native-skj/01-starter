@@ -6,6 +6,7 @@ const SCREENS = [
   },
   { key: 'List', label: 'Go to List Demo' },
   { key: 'Image', label: 'Go to Image Demo' },
+  { key: 'Counter', label: 'Go to Counter Demo' },
 ];
 
 export default SCREENS;

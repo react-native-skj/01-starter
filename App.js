@@ -4,9 +4,16 @@ import HomeScreen from './src/screens/HomeScreen';
 import ComponentsScreen from './src/screens/ComponentsScreen';
 import ListScreen from './src/screens/ListScreen';
 import ImageScreen from './src/screens/ImageScreen';
+import CounterScreen from './src/screens/CounterScreen';
 import SCREENS from './screens';
 
-const components = [HomeScreen, ComponentsScreen, ListScreen, ImageScreen];
+const components = [
+  HomeScreen,
+  ComponentsScreen,
+  ListScreen,
+  ImageScreen,
+  CounterScreen,
+];
 const routes = SCREENS.reduce(
   (cumm, { key }, index) => ({
     ...cumm,
