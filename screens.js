@@ -9,6 +9,7 @@ const SCREENS = [
   { key: 'Counter', label: 'Go to Counter Demo' },
   { key: 'Color', label: 'Go to Color Demo' },
   { key: 'Square', label: 'Go to Square Demo' },
+  { key: 'Text', label: 'Go to Text Demo' },
 ];
 
 export default SCREENS;

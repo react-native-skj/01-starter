@@ -6,11 +6,11 @@ const colorHex = () => Math.floor(Math.random() * 256);
 
 const COLORS = ['Red', 'Green', 'Blue'];
 
-const reducer = (state, { color, change }) => {
-  const newValue = (state[color] + change) % 255;
+const reducer = (state, { type, payload }) => {
+  const newValue = (state[type] + payload) % 255;
   return {
     ...state,
-    [color]: newValue >= 0 ? newValue : 0,
+    [type]: newValue >= 0 ? newValue : 0,
   };
 };
 
@@ -32,7 +32,7 @@ const SquareScreen = () => {
         renderItem={({ item }) => (
           <ColorCounter
             title={item}
-            clicked={(change) => dispatch({ color: item, change })}
+            clicked={(payload) => dispatch({ type: item, payload })}
           />
         )}
       />
