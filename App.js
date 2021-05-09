@@ -8,6 +8,7 @@ import CounterScreen from './src/screens/CounterScreen';
 import ColorScreen from './src/screens/ColorScreen';
 import SquareScreen from './src/screens/SquareScreen';
 import TextScreen from './src/screens/TextScreen';
+import BoxScreen from './src/screens/BoxScreen';
 import SCREENS from './screens';
 
 const components = [
@@ -19,6 +20,7 @@ const components = [
   ColorScreen,
   SquareScreen,
   TextScreen,
+  BoxScreen,
 ];
 const routes = SCREENS.reduce(
   (cumm, { key }, index) => ({
