@@ -1,47 +1,38 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import ColorCounter from '../components/ColorCounter';
 
 const colorHex = () => Math.floor(Math.random() * 256);
 
-const ITEMS = [
-  {
-    title: 'Red',
-    currentValue: colorHex(),
-  },
-  {
-    title: 'Green',
-    currentValue: colorHex(),
-  },
-  {
-    title: 'Blue',
-    currentValue: colorHex(),
-  },
-];
+const COLORS = ['Red', 'Green', 'Blue'];
+
+const reducer = (state, { color, change }) => {
+  const newValue = (state[color] + change) % 255;
+  return {
+    ...state,
+    [color]: newValue >= 0 ? newValue : 0,
+  };
+};
+
+const initialState = COLORS.reduce(
+  (cumm, curr) => ({ ...cumm, [curr]: colorHex() }),
+  {}
+);
 
 const SquareScreen = () => {
-  const [colors, setColors] = useState(ITEMS);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const eventClicked = (index, value) => {
-    setColors((prev) => {
-      const newArr = [...prev];
-      const newvalue = (newArr[index].currentValue + value) % 255;
-      newArr[index].currentValue = newvalue >= 0 ? newvalue : 0;
-      return newArr;
-    });
-  };
-
-  const rgbColor = `rgb(${colors.map((clr) => clr.currentValue).join(',')})`;
+  const rgbColor = `rgb(${COLORS.map((clr) => state[clr]).join(',')})`;
 
   return (
     <View>
       <FlatList
-        keyExtractor={({ title }) => title}
-        data={colors}
-        renderItem={({ item, index }) => (
+        keyExtractor={(item) => item}
+        data={COLORS}
+        renderItem={({ item }) => (
           <ColorCounter
-            title={item.title}
-            clicked={(evt) => eventClicked(index, evt)}
+            title={item}
+            clicked={(change) => dispatch({ color: item, change })}
           />
         )}
       />
